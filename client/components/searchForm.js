@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { postDish } from '../store'
+import { calculatePercentage } from '../store'
 
 const appStyle = {
   fontFamily: 'courier'
@@ -31,7 +31,7 @@ export const searchForm = (props) => (
 const mapDispatchToProps = dispatch => ({
     onSubmit: (evt) => {
       evt.preventDefault()
-      dispatch(postDish(evt.target.dish.value))
+      dispatch(calculatePercentage(evt.target.dish.value))
       evt.target.dish.value = '';
     }
 })
