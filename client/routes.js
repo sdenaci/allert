@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Route, Switch, Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome} from './components'
+import {Main, Login, Signup, UserHome, SearchForm, SearchResults} from './components'
 import {me} from './store'
 
 /**
@@ -15,7 +15,7 @@ class Routes extends Component {
   }
 
   render () {
-    const {isLoggedIn} = this.props
+    const {isLoggedIn, recipes} = this.props
 
     return (
       <Router history={history}>
@@ -34,6 +34,11 @@ class Routes extends Component {
             {/* Displays our Login component as a fallback */}
             <Route component={Login} />
           </Switch>
+          <SearchForm/>
+          {
+            recipes.length &&
+            <SearchResults />
+          }
         </Main>
       </Router>
     )
@@ -47,7 +52,8 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    recipes: 'hi'
   }
 }
 
