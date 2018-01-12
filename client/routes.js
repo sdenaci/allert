@@ -15,7 +15,7 @@ class Routes extends Component {
   }
 
   render () {
-    const {isLoggedIn, recipes} = this.props
+    const {dishBool, isLoggedIn, percentage} = this.props
 
     return (
       <Router history={history}>
@@ -36,8 +36,8 @@ class Routes extends Component {
           </Switch>
           <SearchForm/>
           {
-            recipes.length &&
-            <SearchResults />
+            dishBool &&
+              <SearchResults/>
           }
         </Main>
       </Router>
@@ -52,8 +52,9 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
+    dishBool: !!state.dish,
     isLoggedIn: !!state.user.id,
-    recipes: 'hi'
+    percentage: state.percentage
   }
 }
 
