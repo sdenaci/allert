@@ -1,9 +1,23 @@
-import React, {Component} from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
-const searchResults = (props) => (
-  <h3>{Math.floor(props.percentage*100)}% of recipes for {props.dish} are peanut free </h3>
-)
+const searchResults = (props) => {
+
+  const { percentage, dish } = props
+
+  return (
+    <div>
+      {Object.keys(percentage).map(allergy => {
+        return (
+        <h3 key={allergy}>{Math.floor(percentage[allergy] * 100)}% of recipes for {dish} are {allergy.toLowerCase()}-free </h3>
+        )
+      })}
+      <button>save search</button> <br />
+      <button>new search</button>
+    </div>
+  )
+
+}
 
 const mapState = (state) => ({
   dish: state.dish,

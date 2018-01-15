@@ -34,10 +34,13 @@ class Routes extends Component {
             {/* Displays our Login component as a fallback */}
             <Route component={Login} />
           </Switch>
-          <SearchForm/>
+          {
+            !dishBool &&
+            <SearchForm/>
+          }
           {
             dishBool &&
-              <SearchResults/>
+            <SearchResults/>
           }
         </Main>
       </Router>

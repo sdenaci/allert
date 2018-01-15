@@ -5,19 +5,19 @@ import { postDish } from './dish'
 const POST_PERCENTAGE = 'POST_PERCENTAGE'
 
 //action creators
-export const postPercentage = percentage => ({
+export const postPercentage = (percentageDict) => ({
   type: POST_PERCENTAGE,
-  percentage
+  percentageDict
 })
 
 //reducer
 
-export default function reducer (state = '', action) {
+export default function reducer (state = {}, action) {
 
   switch (action.type) {
 
     case POST_PERCENTAGE:
-      return action.percentage
+      return action.percentageDict
 
     default:
       return state
@@ -28,17 +28,31 @@ export default function reducer (state = '', action) {
 
 //thunk creators
 
-export const calculatePercentage = (dish) =>
+export const calculatePercentage = (dish, allergens) =>
   dispatch => {
-    Promise.all([
-      axios.get(`/api/dishes/${dish}`),
-      axios.get(`/api/dishes/${dish}/allergy`)
-    ])
-      .then(values => {
-        const percentage = values[1].data / values[0].data
-        dispatch(postPercentage(percentage))
+    let apiArray = [axios.get(`/api/dishes/${dish}`)]
+
+    allergens.forEach(allergen => {
+      apiArray.push(axios.get(`/api/dishes/${dish}/${allergen}`))
+    })
+
+    Promise.all(apiArray)
+      .then(results => {
+        const totalRecipesCount = results[0].data
+        const allergenSafeRecipes = results.slice(1)
+
+        const percentageDictionary = {}
+
+        allergens.forEach((allergen, idx) => {
+          const allergenRecipeCount = allergenSafeRecipes[idx].data
+          const percentage = allergenRecipeCount / totalRecipesCount
+
+          percentageDictionary[allergen] = percentage
+
+        })
+
+        dispatch(postPercentage(percentageDictionary))
         dispatch(postDish(dish))
       })
       .catch(console.error)
-
   }
