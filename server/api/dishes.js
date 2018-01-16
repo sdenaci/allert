@@ -22,8 +22,8 @@ router.get('/:dishName', (req, res, next) => {
   const dishName = req.params.dishName
 
   return axios.get(`http://api.yummly.com/v1/api/recipes?_app_id=${appId}&_app_key=${appKey}&q=${dishName}`)
-    .then(res => res.data.totalMatchCount)
-    .then(count => res.json(count))
+    .then(res => res.data)
+    .then(data => res.json(data))
     .catch(next)
 })
 
@@ -33,8 +33,8 @@ router.get('/:dishName/:allergy', (req, res, next) => {
   const allergy = req.params.allergy.toLowerCase()
 
   return axios.get(`http://api.yummly.com/v1/api/recipes?_app_id=${appId}&_app_key=${appKey}&q=${dishName}&allowedAllergy[]=${allergyCodes[allergy]}`)
-    .then(res => res.data.totalMatchCount)
-    .then(count => res.json(count))
+    .then(res => res.data)
+    .then(data => res.json(data))
     .catch(next)
 })
 

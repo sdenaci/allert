@@ -1,30 +1,60 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { RecipeSquare, DefaultButton, ResultGrid } from './index'
+import { clearDish, clearRecipes, clearPercentage} from '../store'
 
 const searchResults = (props) => {
 
-  const { percentage, dish } = props
+  const { percentage, dish, clearSearch, recipes } = props
+  const roundedPercentage = Math.floor(percentage[allergy] * 100)
+  const allergenArray = Object.keys(recipes).filter(key => key !== 'allRecipes')
 
   return (
     <div>
-      {Object.keys(percentage).map(allergy => {
-        return (
-        <h3 key={allergy}>{Math.floor(percentage[allergy] * 100)}% of recipes for {dish} are {allergy.toLowerCase()}-free </h3>
+      {
+        Object.keys(percentage).map(allergy =>
+          <h3 key={allergy}>
+            {roundedPercentage}% of recipes for {dish} are {allergy.toLowerCase()}-free
+          </h3>
         )
-      })}
-      <button>save search</button> <br />
-      <button>new search</button>
+      }
+
+      <ResultGrid recipes={recipes.allRecipes.matches} title={`Top Results For ${dish}:`} />
+
+      {
+        allergenArray.map(allergen =>
+          <ResultGrid recipes={recipes[allergen].matches} title={`Top ${allergen}-Free Results:`} key={allergen}/>
+        )
+      }
+
+      <DefaultButton
+        label="Save Search"
+      />
+
+      <DefaultButton
+        label="New Search"
+        handleClick={clearSearch}
+      />
+
     </div>
   )
 
 }
 
-const mapState = (state) => ({
+const mapState = state => ({
   dish: state.dish,
-  percentage: state.percentage
+  percentage: state.percentage,
+  recipes: state.recipes
 })
 
-const mapDispatch = null
+const mapDispatch = dispatch => ({
+  clearSearch: () => {
+    dispatch(clearDish())
+    dispatch(clearRecipes())
+    dispatch(clearPercentage())
+  }
+})
 
 
 export default connect(mapState, mapDispatch)(searchResults)

@@ -5,8 +5,9 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import user from './user'
 import dish from './dish'
 import percentage from './percentage'
+import recipes from './recipes'
 
-const reducer = combineReducers({user, dish, percentage})
+const reducer = combineReducers({user, dish, percentage, recipes})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -17,3 +18,4 @@ export default store
 export * from './user'
 export * from './dish'
 export * from './percentage'
+export * from './recipes'
