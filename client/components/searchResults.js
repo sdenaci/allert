@@ -7,7 +7,6 @@ import { clearDish, clearRecipes, clearPercentage} from '../store'
 const searchResults = (props) => {
 
   const { percentage, dish, clearSearch, recipes } = props
-  const roundedPercentage = Math.floor(percentage[allergy] * 100)
   const allergenArray = Object.keys(recipes).filter(key => key !== 'allRecipes')
 
   return (
@@ -15,7 +14,7 @@ const searchResults = (props) => {
       {
         Object.keys(percentage).map(allergy =>
           <h3 key={allergy}>
-            {roundedPercentage}% of recipes for {dish} are {allergy.toLowerCase()}-free
+            {Math.floor(percentage[allergy] * 100)}% of recipes for {dish} are {allergy.toLowerCase()}-free
           </h3>
         )
       }
