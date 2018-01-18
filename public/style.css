@@ -6,6 +6,10 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  text-align: center;
+}
+
 label {
   display: block;
 }
@@ -27,3 +31,37 @@ form div {
   flex-wrap: wrap;
 }
 
+.recipeSquareDiv {
+  background-color: grey;
+  flex-basis: 25%;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  margin: 1rem;
+}
+
+.recipeSquareElem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.display-ingredient {
+  width: 90%;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: .5rem ;
+}
+.hide-ingredient {
+  width: 90%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: .5rem ;
+}
