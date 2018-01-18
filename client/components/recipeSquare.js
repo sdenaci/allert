@@ -22,7 +22,7 @@ class recipeSquare extends Component {
 
     return (
       <div className="recipeSquareDiv">
-        <div className="recipeSquareElem">
+        <div className="flex-column">
           <p>{recipe.recipeName}</p>
           <img src={recipe.imageUrlsBySize[90]} />
           <div className={this.state.showIngredients ? "display-ingredient" : "hide-ingredient"}>
