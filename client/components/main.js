@@ -15,8 +15,11 @@ const Main = (props) => {
 
   return (
     <div>
-      <h1>Allert</h1>
-      <nav>
+      <nav className="navbar">
+        <div className="nav-title">
+          <h1>Allert</h1>
+        </div>
+        <div className="nav-link-container">
         {
           isLoggedIn
             ? <div>
@@ -26,10 +29,13 @@ const Main = (props) => {
             </div>
             : <div>
               {/* The navbar will show these links before you log in */}
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
+              <div className="nav-link-container">
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Sign Up</Link>
+              </div>
             </div>
         }
+        </div>
       </nav>
       <hr />
       {children}
@@ -42,7 +48,7 @@ const Main = (props) => {
  */
 const mapState = (state) => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   }
 }
 

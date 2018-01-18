@@ -9,8 +9,8 @@ const resultGrid = (props) => {
 
   return (
     <div>
-      <h1>{title}</h1>
-      <div className="resultGrid">
+      <p>{title}</p>
+      <div className="wrapFlex">
       {recipes.map(recipe =>
         <RecipeSquare recipe={recipe} key={recipe.id}/>
       )}

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Route, Switch, Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, SearchForm, SearchResults} from './components'
+import {Main, Login, Signup, UserHome, Search} from './components'
 import {me} from './store'
 
 /**
@@ -15,7 +15,7 @@ class Routes extends Component {
   }
 
   render () {
-    const {dishBool, isLoggedIn, percentage} = this.props
+    const {isLoggedIn} = this.props
 
     return (
       <Router history={history}>
@@ -32,16 +32,11 @@ class Routes extends Component {
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}
-            <Route component={Login} />
+
+            <Route path="/search" component={Search} />
+            <Route component={Search} />
           </Switch>
-          {
-            !dishBool &&
-            <SearchForm/>
-          }
-          {
-            dishBool &&
-            <SearchResults/>
-          }
+
         </Main>
       </Router>
     )
@@ -51,17 +46,17 @@ class Routes extends Component {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    dishBool: !!state.dish,
+
     isLoggedIn: !!state.user.id,
     percentage: state.percentage
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     loadInitialData () {
       dispatch(me())

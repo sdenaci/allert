@@ -6,6 +6,12 @@ a {
   text-decoration: none;
 }
 
+button {
+  font-size: 1rem;
+  border-radius: 3px;
+  padding: .5rem;
+}
+
 h1 {
   text-align: center;
 }
@@ -19,20 +25,119 @@ nav a {
   margin: 1em;
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.resultGrid {
+form legend {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+form div {
+  margin: 1em;
+}
+
+form input {
+  border-radius: 3px;
+  padding: .5rem;
+  border: solid 1px;
+  box-shadow: none;
+  font-size: 1rem;
+}
+
+form input:focus {
+  outline: none;
+}
+
+input[type=checkbox] {
+  visibility: hidden;
+}
+
+.checkbox {
+  width: 25px;
+  margin: 20px;
+  position: relative;
+}
+
+.checkbox label {
+  cursor: pointer;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  left: 0;
+  background: #eee;
+  border: 1px solid #ddd;
+}
+
+.checkbox label:after {
+  opacity: 0.2;
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 5px;
+  background: transparent;
+  top: 6px;
+  left: 7px;
+  border: 3px solid #333;
+  border-top: none;
+  border-right: none;
+
+  transform: rotate(-45deg);
+}
+
+.checkbox label:hover::after {
+  opacity: 0.5;
+}
+
+.checkbox input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-title {
+  flex-basis: 80%;
+  display: flex;
+}
+
+.nav-link-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wrapFlex {
+  margin: 0;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: baseline;
   flex-wrap: wrap;
 }
 
+.wrapFlexCheck {
+  flex-basis: 33%;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.wrapLeft {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 .recipeSquareDiv {
-  background-color: grey;
   flex-basis: 25%;
   border-style: solid;
   border-width: 2px;
@@ -47,9 +152,13 @@ form div {
   margin-bottom: 1rem;
 }
 
+form > * {
+  margin-bottom: .5rem
+}
+
 .display-ingredient {
   width: 90%;
-  background-color: black;
+  background-color: grey;
   color: white;
   border-radius: 5px;
   display: flex;

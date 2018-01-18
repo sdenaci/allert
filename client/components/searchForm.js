@@ -1,44 +1,44 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { DefaultButton } from './index'
+import { DefaultButton, Checkbox, SearchResults } from './index'
 import { calculatePercentage } from '../store'
 
 export const searchForm = (props) => {
 
-  const { onSubmit } = props
+  const { onSubmit, dishBool } = props
+  const allergies = ["Gluten", "Peanut", "Seafood", "Soy", "Dairy", "Egg", "Sulfite", "TreeNut", "Wheat"]
 
   return (
     <div>
       <form onSubmit={onSubmit}>
           <legend>allert tells you about the possible allergens in your favorite dishes</legend>
-            dish:
               <input
                 name="dish"
                 type="text"
+                placeholder="search dish keywords"
               />
-          <br />
           <legend>allergies:</legend>
-          <input type="checkbox" name="allergy" value="Gluten" /> Gluten <br />
-          <input type="checkbox" name="allergy" value="Peanut" /> Peanut <br />
-          <input type="checkbox" name="allergy" value="Seafood" /> Seafood <br />
-          <input type="checkbox" name="allergy" value="Soy" /> Soy <br />
-          <input type="checkbox" name="allergy" value="Dairy" /> Dairy <br />
-          <input type="checkbox" name="allergy" value="Egg" /> Egg <br />
-          <input type="checkbox" name="allergy" value="Sulfite" /> Sulfite <br />
-          <input type="checkbox" name="allergy" value="TreeNut" /> Tree-Nut <br />
-          <input type="checkbox" name="allergy" value="Wheat" /> Wheat <br />
-          <div>
+          <div className="wrapLeft">
+            {
+              allergies.map(allergy =>
+                <Checkbox label={allergy} key={allergy}/>
+            )
+            }
+          </div>
               <DefaultButton
                 label="Search"
                 type="submit"
               />
-          </div>
       </form>
     </div>
   )
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapState = state => ({
+  dishBool: !!state.dish,
+})
+
+const mapDispatch = dispatch => ({
   onSubmit: (evt) => {
     evt.preventDefault()
     let allergens = []
@@ -56,4 +56,4 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(null, mapDispatchToProps)(searchForm)
+export default connect(mapState, mapDispatch)(searchForm)

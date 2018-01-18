@@ -20,10 +20,12 @@ class RecipeSquare extends Component {
 
     const { recipe } = this.props
 
+    console.log('recipe', recipe)
+
     return (
       <div className="recipeSquareDiv">
         <div className="recipeSquareElem">
-          <h1>{recipe.recipeName}</h1>
+          <p>{recipe.recipeName}</p>
           <img src={recipe.imageUrlsBySize[90]} />
           <div className={this.state.showIngredients ? "display-ingredient" : "hide-ingredient"}>
             <p>ingredients:</p>
