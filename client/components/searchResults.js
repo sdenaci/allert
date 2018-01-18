@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { RecipeSquare, DefaultButton, ResultGrid } from './index'
 import { clearDish, clearRecipes, clearPercentage} from '../store'
 
-const searchResults = (props) => {
+const searchResults = props => {
 
   const { percentage, dish, clearSearch, recipes } = props
   const allergenArray = Object.keys(recipes).filter(key => key !== 'allRecipes')

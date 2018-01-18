@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { DefaultButton } from './index'
 
-class RecipeSquare extends Component {
+class recipeSquare extends Component {
 
   constructor() {
     super()
@@ -20,8 +20,6 @@ class RecipeSquare extends Component {
 
     const { recipe } = this.props
 
-    console.log('recipe', recipe)
-
     return (
       <div className="recipeSquareDiv">
         <div className="recipeSquareElem">
@@ -33,7 +31,8 @@ class RecipeSquare extends Component {
               label={this.state.showIngredients ? 'Hide' : 'Show'}
               handleClick={this.handleToggle}
             />
-            {this.state.showIngredients &&
+            {
+              this.state.showIngredients &&
               <ul>
                 {
                   recipe.ingredients.map(ingredient =>
@@ -50,4 +49,4 @@ class RecipeSquare extends Component {
 
 }
 
-export default RecipeSquare
+export default recipeSquare
