@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
+import {auth, hideModal} from '../store'
 
 /**
  * COMPONENT
@@ -10,7 +10,7 @@ const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="column-flex">
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="email"></label>
@@ -57,6 +57,7 @@ const mapDispatch = (dispatch) => {
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName))
+      dispatch(hideModal())
     }
   }
 }

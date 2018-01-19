@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Route, Switch, Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, Search} from './components'
+import {Main, Login, Signup, UserHome, Search, ModalConductor} from './components'
 import {me} from './store'
 
 /**
@@ -18,27 +18,27 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
-      <Router history={history}>
-        <Main>
-          <Switch>
-            {/* Routes placed here are available to all visitors */}
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            {
-              isLoggedIn &&
-                <Switch>
-                  {/* Routes placed here are only available after logging in */}
-                  <Route path="/home" component={UserHome} />
-                </Switch>
-            }
-            {/* Displays our Login component as a fallback */}
+      <div>
+        <Router history={history}>
+          <Main>
+            <Switch>
+              {
+                isLoggedIn &&
+                  <Switch>
+                    {/* Routes placed here are only available after logging in */}
+                    <Route path="/home" component={UserHome} />
+                  </Switch>
+              }
+              {/* Displays our Login component as a fallback */}
 
-            <Route path="/search" component={Search} />
-            <Route component={Search} />
-          </Switch>
+              <Route path="/search" component={Search} />
+              <Route component={Search} />
+            </Switch>
 
-        </Main>
-      </Router>
+          </Main>
+        </Router>
+        <ModalConductor />
+      </div>
     )
   }
 }

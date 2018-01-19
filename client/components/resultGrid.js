@@ -21,9 +21,10 @@ class resultGrid extends Component {
     const { recipes, title } = this.props
 
     return (
-      <div className="flex-column">
+      <div>
         <DefaultButton
-          label={(this.state.showRecipes ? 'Hide ' : 'Show ')+ title}
+          className="tablinks"
+          label={title}
           handleClick={this.handleToggle}
         />
         {

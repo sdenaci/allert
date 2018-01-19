@@ -10,7 +10,7 @@ const searchResults = props => {
   const allergenArray = Object.keys(recipes).filter(key => key !== 'allRecipes')
 
   return (
-    <div className="flex-column">
+    <div>
       {
         Object.keys(percentage).map(allergy =>
           <h3 key={allergy}>
@@ -18,14 +18,17 @@ const searchResults = props => {
           </h3>
         )
       }
+      <div className="flex-start-container">
+        <div className="tab">
+          <ResultGrid recipes={recipes.allRecipes.matches} title={`Top Results`} />
 
-      <ResultGrid recipes={recipes.allRecipes.matches} title={`Top Results For ${dish}:`} />
-
-      {
-        allergenArray.map(allergen =>
-          <ResultGrid recipes={recipes[allergen].matches} title={`Top ${allergen}-Free Results:`} key={allergen}/>
-        )
-      }
+          {
+            allergenArray.map(allergen =>
+              <ResultGrid recipes={recipes[allergen].matches} title={`Top ${allergen}-Free Results`} key={allergen}/>
+            )
+          }
+        </div>
+      </div>
       <div>
         <DefaultButton
           label="Save Search"

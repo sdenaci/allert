@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
-import {logout} from '../store'
+import {DefaultButton} from './index'
+import {logout, sign_up, login} from '../store'
 
 /**
  * COMPONENT
@@ -11,7 +12,7 @@ import {logout} from '../store'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  const {children, handleClick, isLoggedIn} = props
+  const {children, handleClick, isLoggedIn, handleSignup, handleLogin} = props
 
   return (
     <div>
@@ -30,8 +31,14 @@ const Main = (props) => {
             : <div>
               {/* The navbar will show these links before you log in */}
               <div className="nav-link-container">
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
+                <DefaultButton
+                  label="Login"
+                  handleClick={handleLogin}
+                />
+                <DefaultButton
+                  label="Sign Up"
+                  handleClick={handleSignup}
+                />
               </div>
             </div>
         }
@@ -46,19 +53,22 @@ const Main = (props) => {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
-  return {
-    isLoggedIn: !!state.user.id,
-  }
-}
+const mapState = state => ({
+  isLoggedIn: !!state.user.id
+})
 
-const mapDispatch = (dispatch) => {
-  return {
-    handleClick () {
-      dispatch(logout())
-    }
+
+const mapDispatch = dispatch => ({
+  handleClick: () => {
+    dispatch(logout())
+  },
+  handleSignup: () => {
+    dispatch(sign_up())
+  },
+  handleLogin: () => {
+    dispatch(login())
   }
-}
+})
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
