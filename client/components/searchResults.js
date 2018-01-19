@@ -29,16 +29,7 @@ const searchResults = props => {
           }
         </div>
       </div>
-      <div>
-        <DefaultButton
-          label="Save Search"
-        />
 
-        <DefaultButton
-          label="New Search"
-          handleClick={clearSearch}
-        />
-      </div>
 
     </div>
   )

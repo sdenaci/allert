@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { SearchResults, SearchForm } from './index'
+import { TabSearchResults, SearchForm } from './index'
 
 const search = props => {
 
@@ -10,7 +10,7 @@ const search = props => {
     <div>
       {
         dishBool===true ?
-        <SearchResults />
+        <TabSearchResults />
         :
         <SearchForm />
 

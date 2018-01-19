@@ -21,7 +21,7 @@ class resultGrid extends Component {
     const { recipes, title } = this.props
 
     return (
-      <div>
+      <div className="column-flex">
         <DefaultButton
           className="tablinks"
           label={title}
