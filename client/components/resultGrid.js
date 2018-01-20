@@ -1,44 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { RecipeSquare, DefaultButton } from './index'
 
-class resultGrid extends Component {
 
-  constructor() {
-    super()
-    this.state = {
-      showRecipes: false
-    }
-    this.handleToggle = this.handleToggle.bind(this)
-  }
+const resultGrid = props => {
 
-    handleToggle() {
-    this.state.showRecipes ? this.setState({showRecipes: false}) : this.setState({showRecipes: true})
-  }
+  const { recipes, title } = props
 
-  render() {
-
-    const { recipes, title } = this.props
-
-    return (
-      <div className="column-flex">
-        <DefaultButton
-          className="tablinks"
-          label={title}
-          handleClick={this.handleToggle}
-        />
-        {
-          this.state.showRecipes &&
-          <div className="wrapFlex">
-            {recipes.map(recipe =>
-              <RecipeSquare recipe={recipe} key={recipe.id}/>
-            )}
-          </div>
-        }
+  return (
+    <div className="column-flex-left">
+      <div className="wrapFlex">
+        {recipes.map(recipe =>
+          <RecipeSquare recipe={recipe} key={recipe.id}/>
+        )}
       </div>
-    )
+    </div>
+  )
 
-  }
 }
 
 export default resultGrid

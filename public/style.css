@@ -118,12 +118,12 @@ input[type=checkbox] {
 .flex {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .wrapFlex {
   margin: 0;
   display: flex;
-  justify-content: center;
   align-items: baseline;
   flex-wrap: wrap;
 }
@@ -142,9 +142,10 @@ input[type=checkbox] {
   flex-direction: column;
 }
 
-.column-flex {
+.column-flex-left {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .wrapFlexCheck {
@@ -170,11 +171,13 @@ input[type=checkbox] {
 }
 
 .recipeSquareDiv {
+  padding-top: 1rem;
   flex-basis: 25%;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 5px;
-  margin: 1rem;
+}
+
+.recipeSquareDiv p {
+  height: 35px;
+  margin: .2rem;
 }
 
 .flex-column {
@@ -232,12 +235,12 @@ form > * {
   display: flex;
   overflow: hidden;
   border: 1px solid #ccc;
+  border-bottom: none;
   background-color: #f1f1f1;
-  margin-bottom: .5rem;
-  border-radius: 3px;
+  margin: 0;
 }
 
-.tab button {
+.tab-button {
   background-color: inherit;
   border: 1px solid #ddd;
   float: left;
@@ -246,19 +249,33 @@ form > * {
   cursor: pointer;
   padding: 14px 16px;
   margin: 0;
-  transition: 0.3s;
+  border-radius: 0px;
+/*  transition: 0.3s;*/
 }
 
-.tab button:hover {
+.tab-button:hover {
   background-color: #ddd;
+  margin: 0;
+  padding: 14px 16px;
 }
 
-.tab button.active {
+.tab-button-active {
   background-color: #ccc;
+  margin: 0;
+  padding: 14px 16px;
+  border-bottom: none;
+  border-radius: none;
 }
 
 .tab-content {
   display: none;
+  padding: .5rem;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.tab-content-active {
+  background-color: #ccc;
   padding: 6x 12px;
   border: 1px solid #ccc;
   border-top: none;

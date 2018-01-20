@@ -26,21 +26,17 @@ class recipeSquare extends Component {
           <p>{recipe.recipeName}</p>
           <img src={recipe.imageUrlsBySize[90]} />
           <div className={this.state.showIngredients ? "display-ingredient" : "hide-ingredient"}>
-            <p>ingredients:</p>
             <DefaultButton
-              label={this.state.showIngredients ? 'Hide' : 'Show'}
+              label={this.state.showIngredients ? 'Hide ingredients' : 'Show Ingredients'}
               handleClick={this.handleToggle}
             />
+            <div className="flex">
             {
-              this.state.showIngredients &&
-              <ul>
-                {
-                  recipe.ingredients.map(ingredient =>
-                    <li key={ingredient}>{ingredient}</li>
-                  )
-                }
-              </ul>
+            this.state.showIngredients &&
+              recipe.ingredients.map(ingredient =>
+                <p key={ingredient}>*{ingredient}</p>)
             }
+            </div>
           </div>
         </div>
       </div>
