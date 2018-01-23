@@ -280,3 +280,7 @@ form > * {
   border: 1px solid #ccc;
   border-top: none;
 }
+
+button:focus{
+  outline: none;
+}
