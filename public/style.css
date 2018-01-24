@@ -314,7 +314,7 @@ button:focus{
   display: block;
 }
 
-.recipeImgDiv h1 {
+.recipeImgDiv h2 {
   position: absolute;
   top: 1%;
   color: white;
@@ -345,7 +345,7 @@ button:focus{
   opacity: 0.2;
 }
 
-.recipeImgDiv:hover h1, .recipeImgDiv-active h1 {
+.recipeImgDiv:hover h2, .recipeImgDiv-active h2 {
   background-color: #7b7b7b;
   color: white;
   position: absolute;
@@ -362,15 +362,45 @@ button:focus{
   margin: 1rem 3rem;
 }
 
+@media(max-width: 1200px) {
+  .recipeImgDiv, .recipeImgDiv-active {
+    width: 50%;
+  }
+}
+
+@media(max-width: 825px) {
+  .recipeImgDiv, .recipeImgDiv-active {
+    width: 100%;
+  }
+}
+
 @media (max-width: 750px) {
   .wrapFlexCheck {
     flex-basis: 25%;
   }
+  p {
+    font-size: 14px;
+  }
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 570px) {
   .wrapFlexCheck {
     flex-basis: 33%;
+  }
+  .navTitle {
+    flex-basis: 50%;
+  }
+  p {
+    font-size: 12px;
+  }
+  button {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapFlexCheck {
+    flex-basis: 50%;
   }
 }

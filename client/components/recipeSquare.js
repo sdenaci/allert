@@ -25,7 +25,7 @@ class recipeSquare extends Component {
     console.log(recipe)
     return (
       <div className={"recipeImgDiv"+(this.state.showIngredients ? "-active" : "")} onClick={this.handleToggle}>
-        <h1>{recipe.recipeName}</h1>
+        <h2>{recipe.recipeName}</h2>
         <div className="ingredients">
           <p>ingredients - {recipe.ingredients.join(', ')}</p>
         </div>
