@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { SearchForm } from './index'
 import {connect} from 'react-redux'
 
 /**
@@ -9,8 +10,9 @@ export const UserHome = (props) => {
   const {email} = props
 
   return (
-    <div>
-      <h3>Welcome, {email}</h3>
+    <div className="results">
+      <h3>Welcome, {email}!</h3>
+      <SearchForm />
     </div>
   )
 }
