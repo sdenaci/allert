@@ -18,7 +18,7 @@ const Main = (props) => {
     <div>
       <nav className="navbar">
         <div className="nav-title">
-          <h1>Allert</h1>
+          <div id="logo">Allert</div>
         </div>
         <div className="nav-link-container">
         {

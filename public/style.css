@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: helvetica-light;
 }
 
 a {
@@ -7,6 +7,7 @@ a {
 }
 
 button {
+  background-color: #ccc;
   font-size: 1rem;
   padding: .5rem;
   margin-bottom: .7rem;
@@ -108,6 +109,14 @@ input[type=checkbox] {
 .nav-title {
   flex-basis: 80%;
   display: flex;
+  justify-content: flex-start;
+  padding: 5px;
+}
+
+#logo {
+  font-size: 2rem;
+  padding: 10px;
+  border: solid 1px #7b7b7b;
 }
 
 .nav-link-container {
