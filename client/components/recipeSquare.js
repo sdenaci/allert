@@ -13,36 +13,34 @@ class recipeSquare extends Component {
   }
 
   handleToggle() {
+    console.log('hi')
     this.state.showIngredients ? this.setState({showIngredients: false}) : this.setState({showIngredients: true})
   }
 
   render() {
 
-    const { recipe } = this.props
-
+    const { recipe, images } = this.props
+    const id = recipe.id
+    const recImage = images[id]
+    console.log(recipe)
     return (
-      <div className="recipeSquareDiv">
-        <div className="flex-column">
-          <p>{recipe.recipeName}</p>
-          <img src={recipe.imageUrlsBySize[90]} />
-          <div className={this.state.showIngredients ? "display-ingredient" : "hide-ingredient"}>
-            <DefaultButton
-              label={this.state.showIngredients ? 'Hide ingredients' : 'Show Ingredients'}
-              handleClick={this.handleToggle}
-            />
-            <div className="flex">
-            {
-            this.state.showIngredients &&
-              recipe.ingredients.map(ingredient =>
-                <p key={ingredient}>*{ingredient}</p>)
-            }
-            </div>
-          </div>
+      <div className="recipeImgDiv" onClick={this.handleToggle}>
+        <h1>{recipe.recipeName}</h1>
+        <div className={"ingredients"+(this.state.showIngredients ? "-active" : "")}>
+          <p>ingredients - {recipe.ingredients.join(', ')}</p>
         </div>
+        <img src={recImage} className="recipeImg"/>
       </div>
     )
   }
 
 }
 
-export default recipeSquare
+
+
+const mapState = state => ({
+  images: state.images
+})
+
+
+export default connect(mapState)(recipeSquare)

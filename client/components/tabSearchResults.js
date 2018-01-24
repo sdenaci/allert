@@ -39,7 +39,7 @@ class tabSearchResults extends Component {
             key="allRecipes"
             value="allRecipes"
             onClick={this.switchTab}
-          >All Recipes
+          >Top Results
           </button>
           {
             allergenArray.map(allergen =>
@@ -48,7 +48,7 @@ class tabSearchResults extends Component {
                 key="allRecipes"
                 value={allergen}
                 onClick={this.switchTab}
-              >{allergen}-Free Recipes
+              >Top {allergen}-Free Results
               </button>
           )}
         </div>

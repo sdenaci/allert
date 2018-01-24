@@ -7,7 +7,7 @@ const search = props => {
   const { dishBool } = props
 
   return (
-    <div>
+    <div className="results">
       {
         dishBool===true ?
         <TabSearchResults />

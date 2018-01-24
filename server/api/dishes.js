@@ -21,7 +21,7 @@ router.get('/:dishName', (req, res, next) => {
 
   const dishName = req.params.dishName
 
-  return axios.get(`http://api.yummly.com/v1/api/recipes?_app_id=${appId}&_app_key=${appKey}&q=${dishName}`)
+  return axios.get(`http://api.yummly.com/v1/api/recipes?_app_id=${appId}&_app_key=${appKey}&q=${dishName}&maxResult=6`)
     .then(res => res.data)
     .then(data => res.json(data))
     .catch(next)
@@ -32,7 +32,7 @@ router.get('/:dishName/:allergy', (req, res, next) => {
   const dishName = req.params.dishName
   const allergy = req.params.allergy.toLowerCase()
 
-  return axios.get(`http://api.yummly.com/v1/api/recipes?_app_id=${appId}&_app_key=${appKey}&q=${dishName}&allowedAllergy[]=${allergyCodes[allergy]}`)
+  return axios.get(`http://api.yummly.com/v1/api/recipes?_app_id=${appId}&_app_key=${appKey}&q=${dishName}&allowedAllergy[]=${allergyCodes[allergy]}&maxResult=6`)
     .then(res => res.data)
     .then(data => res.json(data))
     .catch(next)

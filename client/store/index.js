@@ -7,8 +7,9 @@ import dish from './dish'
 import percentage from './percentage'
 import recipes from './recipes'
 import modal from './modal'
+import images from './images'
 
-const reducer = combineReducers({user, dish, percentage, recipes, modal})
+const reducer = combineReducers({user, dish, percentage, recipes, modal, images})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -22,3 +23,4 @@ export * from './dish'
 export * from './percentage'
 export * from './recipes'
 export * from './modal'
+export * from './images'

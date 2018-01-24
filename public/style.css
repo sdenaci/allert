@@ -8,7 +8,6 @@ a {
 
 button {
   font-size: 1rem;
-  border-radius: 3px;
   padding: .5rem;
   margin-bottom: .7rem;
   margin-right: .5rem;
@@ -103,6 +102,7 @@ input[type=checkbox] {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 1rem 3rem;
 }
 
 .nav-title {
@@ -113,6 +113,11 @@ input[type=checkbox] {
 .nav-link-container {
   display: flex;
   justify-content: flex-end;
+}
+
+.nav-link-container button {
+  margin: 0;
+  margin-left: .5rem;
 }
 
 .flex {
@@ -149,7 +154,7 @@ input[type=checkbox] {
 }
 
 .wrapFlexCheck {
-  flex-basis: 33%;
+  flex-basis: 20%;
   margin: 0;
   display: flex;
   align-items: baseline;
@@ -158,10 +163,11 @@ input[type=checkbox] {
 
 .wrapLeft {
   margin: 0;
+  margin-bottom: 1rem;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .flex-start-container {
@@ -171,8 +177,9 @@ input[type=checkbox] {
 }
 
 .recipeSquareDiv {
+  font-color: white;
   padding-top: 1rem;
-  flex-basis: 25%;
+  flex-basis: 33%;
 }
 
 .recipeSquareDiv p {
@@ -238,6 +245,8 @@ form > * {
   border-bottom: none;
   background-color: #f1f1f1;
   margin: 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .tab-button {
@@ -249,7 +258,8 @@ form > * {
   cursor: pointer;
   padding: 14px 16px;
   margin: 0;
-  border-radius: 0px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 /*  transition: 0.3s;*/
 }
 
@@ -257,6 +267,8 @@ form > * {
   background-color: #ddd;
   margin: 0;
   padding: 14px 16px;
+  border-top-left-radius:8px;
+  border-top-right-radius: 8px;
 }
 
 .tab-button-active {
@@ -264,7 +276,8 @@ form > * {
   margin: 0;
   padding: 14px 16px;
   border-bottom: none;
-  border-radius: none;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .tab-content {
@@ -279,8 +292,83 @@ form > * {
   padding: 6x 12px;
   border: 1px solid #ccc;
   border-top: none;
+  margin-bottom: 2rem;
 }
 
 button:focus{
   outline: none;
+}
+
+.recipeImgDiv {
+  width: 33.333%;
+  position: relative;
+}
+
+
+.recipeImgDiv {
+  width: 33.333%;
+  position: relative;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.recipeImg {
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.recipeImgDiv h1 {
+  position: absolute;
+  top: 1%;
+  color: white;
+  background-color: #ccc;
+  padding: 5px;
+  margin: 5%;
+}
+
+.ingredients {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 35%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 5%;
+  color: white;
+  background-color: #7b7b7b;
+}
+
+.ingredients p {
+  margin: .2rem;
+}
+
+.recipeImgDiv:hover img {
+  opacity: 0.2;
+}
+
+.recipeImgDiv:hover h1 {
+  background-color: #7b7b7b;
+}
+
+.recipeImgDiv:hover .ingredients {
+  opacity: 1;
+}
+
+.results {
+  margin: 1rem 3rem;
+}
+
+@media (max-width: 750px) {
+  .wrapFlexCheck {
+    flex-basis: 25%;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .wrapFlexCheck {
+    flex-basis: 33%;
+  }
 }

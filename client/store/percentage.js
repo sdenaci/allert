@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { postDish } from './dish'
 import { postRecipes } from './recipes'
+import { fetchImages } from './images'
 
 //action types
 const POST_PERCENTAGE = 'POST_PERCENTAGE'
@@ -40,6 +41,8 @@ export default function reducer (state = {}, action) {
 export const calculatePercentage = (dish, allergens) =>
   dispatch => {
     let apiArray = [axios.get(`/api/dishes/${dish}`)]
+    let allRecipes, allRecipesCount, safeRecipeArray
+    let imgDict = {}
 
     allergens.forEach(allergen => {
       apiArray.push(axios.get(`/api/dishes/${dish}/${allergen}`))
@@ -47,10 +50,14 @@ export const calculatePercentage = (dish, allergens) =>
 
     Promise.all(apiArray)
       .then(results => {
-        const allRecipes = results[0].data
-        const allRecipesCount = allRecipes.totalMatchCount
-        const safeRecipeArray = results.slice(1)
+        allRecipes = results[0].data
+        allRecipesCount = allRecipes.totalMatchCount
+        safeRecipeArray = results.slice(1)
 
+        dispatch(fetchImages(results))
+
+      })
+      .then(() => {
         const percentageDictionary = {}
         const recipeDictionary = {allRecipes}
 
