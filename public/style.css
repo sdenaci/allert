@@ -299,13 +299,8 @@ button:focus{
   outline: none;
 }
 
-.recipeImgDiv {
-  width: 33.333%;
-  position: relative;
-}
 
-
-.recipeImgDiv {
+.recipeImgDiv, .recipeImgDiv-active {
   width: 33.333%;
   position: relative;
   transition: .5s ease;
@@ -340,19 +335,26 @@ button:focus{
   background-color: #7b7b7b;
 }
 
-.ingredients p {
+
+.ingredients p, .recipeImgDiv-active p {
   margin: .2rem;
 }
 
-.recipeImgDiv:hover img {
+
+.recipeImgDiv:hover img, .recipeImgDiv-active img {
   opacity: 0.2;
 }
 
-.recipeImgDiv:hover h1 {
+.recipeImgDiv:hover h1, .recipeImgDiv-active h1 {
   background-color: #7b7b7b;
+  color: white;
+  position: absolute;
+  top: 1%;
+  padding: 5px;
+  margin: 5%;
 }
 
-.recipeImgDiv:hover .ingredients {
+.recipeImgDiv:hover .ingredients, .recipeImgDiv-active > div {
   opacity: 1;
 }
 

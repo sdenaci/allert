@@ -24,9 +24,9 @@ class recipeSquare extends Component {
     const recImage = images[id]
     console.log(recipe)
     return (
-      <div className="recipeImgDiv" onClick={this.handleToggle}>
+      <div className={"recipeImgDiv"+(this.state.showIngredients ? "-active" : "")} onClick={this.handleToggle}>
         <h1>{recipe.recipeName}</h1>
-        <div className={"ingredients"+(this.state.showIngredients ? "-active" : "")}>
+        <div className="ingredients">
           <p>ingredients - {recipe.ingredients.join(', ')}</p>
         </div>
         <img src={recImage} className="recipeImg"/>
