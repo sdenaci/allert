@@ -5,6 +5,7 @@ import { TabSearchResults, SearchForm } from './index'
 const search = props => {
 
   const { dishBool } = props
+  console.log('hii')
 
   return (
     <div className="results">

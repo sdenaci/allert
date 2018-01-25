@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import { RecipeSquare, DefaultButton, ResultGrid } from './index'
-import { clearDish, clearRecipes, clearPercentage} from '../store'
+import { clearDish, clearRecipes, clearPercentage, clearImg} from '../store'
 
 class tabSearchResults extends Component {
 
@@ -20,18 +20,34 @@ class tabSearchResults extends Component {
 
   render() {
 
-    const { percentage, dish, clearSearch, recipes} = this.props
+    const { percentage, dish, clearSearch, handleSafe, handleRisky, recipes} = this.props
     const allergenArray = Object.keys(recipes).filter(key => key !== 'allRecipes')
 
     return (
     <div>
-      {
-        Object.keys(percentage).map(allergy =>
-          <h3 key={allergy}>
-            {Math.floor(percentage[allergy] * 100)}% of recipes for {dish} are {allergy.toLowerCase()}-free
-          </h3>
-        )
-      }
+      <div className="wrapFlexCarousel">
+        <div className="percentageCarousel">
+          {
+            Object.keys(percentage).map(allergy =>
+              <h3 key={allergy}>
+                {Math.floor(percentage[allergy] * 100)}% of recipes for {dish} are {allergy.toLowerCase()}-free
+              </h3>
+            )
+          }
+          </div>
+          <div className="buttonContainer">
+            <DefaultButton
+              label="Looks Safe"
+              handleClick={handleSafe(dish)}
+              idName="safeButton"
+            />
+            <DefaultButton
+              label="Looks Risky"
+              handleClick={handleRisky(dish)}
+              idName="riskyButton"
+            />
+          </div>
+        </div>
       <div className="flex">
         <div className="tab">
           <button
@@ -45,7 +61,7 @@ class tabSearchResults extends Component {
             allergenArray.map(allergen =>
               <button
                 className={this.state.activeTab===allergen ? "tab-button-active" : "tab-button"}
-                key="allRecipes"
+                key={allergen}
                 value={allergen}
                 onClick={this.switchTab}
               >Top {allergen}-Free Results
@@ -63,11 +79,7 @@ class tabSearchResults extends Component {
           </div>
         )
       }
-      <div>
-        <DefaultButton
-          label="Save Search"
-        />
-
+      <div className="flexCenter">
         <DefaultButton
           label="New Search"
           handleClick={clearSearch}
@@ -90,6 +102,15 @@ const mapDispatch = dispatch => ({
     dispatch(clearDish())
     dispatch(clearRecipes())
     dispatch(clearPercentage())
+    dispatch(clearImg())
+  },
+  handleSafe: (dish) => {
+    console.log('handleSafe')
+    // dispatch(saveSafe())
+  },
+  handleRisky: (dish) => {
+    console.log('handleRisky')
+    // dispatch(saveRisky())
   }
 })
 

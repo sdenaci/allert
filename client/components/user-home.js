@@ -7,12 +7,18 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const UserHome = (props) => {
-  const {email} = props
+  const {email, dishBool} = props
 
   return (
     <div className="results">
       <h3>Welcome, {email}!</h3>
-      <SearchForm />
+      {
+        dishBool===true ?
+        <TabSearchResults />
+        :
+        <SearchForm />
+
+      }
     </div>
   )
 }
@@ -22,7 +28,8 @@ export const UserHome = (props) => {
  */
 const mapState = (state) => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    dishBool: !!state.dish
   }
 }
 
